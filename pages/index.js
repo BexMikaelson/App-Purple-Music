@@ -16,17 +16,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='Header'>
-      <h1>Purple Music</h1>
-      <h2>Your number one Purple music stream!</h2>
-      </div>
-      <main>
-        
-        <Sidebar/>
-        {/* {center} */}
-      </main>
+      <div className="bg-black h-screen overflow-hidden">
+        <h1>Purple Music</h1>
+        <h2>Your number one Purple music stream!</h2>
+        <main>
+          <Sidebar />
+          {/* {center} */}
+        </main>
 
-      <div>{/* {Player} */}</div>
+        <div>{/* {Player} */}</div>
+      </div>
     </>
-  )
+  );
 }
