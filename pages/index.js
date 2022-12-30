@@ -18,9 +18,10 @@ export default function Home() {
 
       <div className='Header'>
       <h1>Purple Music</h1>
+      <h2>Your number one Purple music stream!</h2>
       </div>
       <main>
-        <h2>Your number one Purple music stream!</h2>
+        
         <Sidebar/>
         {/* {center} */}
       </main>
