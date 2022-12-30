@@ -61,6 +61,16 @@ const Sidebar = () => {
 
         {/* playlist */}
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
       </div>
     );
 }
