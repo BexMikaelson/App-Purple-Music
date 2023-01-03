@@ -15,7 +15,7 @@ async function refreshAccessToken(token){
     return {
       ...token,
         accessToken: refreshedToken.access_token,
-        accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000, //= 1 hour as 3600 returns from spotify Api
+        accessTokenExpires: Date.now + refreshedToken.expires_in * 1000, //= 1 hour as 3600 returns from spotify Api
         refreshToken: refreshedToken.refresh_token ?? token.refresh_token, // Replace Token if new one came back else fall back to old refresh token
         
     };
@@ -66,13 +66,13 @@ export const authOptions = {
       console.log("Token is not Valid! Expired!, Refreshing");
       return await refreshAccessToken(token)
     },
-    // async session({ session, token }) {
-    //   session.user = token.user
-    //   session.accessToken = token.accessToken
-    //   session.error = token.error
+    async session({ session, token }) {
+      session.user.accessToken = token.accessToken;
+      session.user.refreshToken = token.refreshToken;
+      session.user.username = token.username;
 
-    //   return session
-    // },
+      return session;
+    },
   },    
 }
 
