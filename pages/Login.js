@@ -1,3 +1,5 @@
+import { getProviders, signIn } from "next-auth/react";
+
 const Login = () => {
     return ( 
         <div>
@@ -7,3 +9,9 @@ const Login = () => {
 }
  
 export default Login;
+
+//serverside rendering
+export async function getServerSideProps(){
+    const providers = await getProviders();
+
+}
