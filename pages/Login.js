@@ -11,7 +11,7 @@ const Login = ({providers}) => {
         <div className="flex place-content-center py-20">
           { Object.values(providers).map((provider) => (
               <div className="bg-purple-700 p-5 rounded-full " key={provider.name}>
-                   <button onClick={() => signIn(provider.id)}>
+                   <button onClick={() => signIn(provider.id, {callbackUrl:"/"})}>
                         Sign in with {provider.name}
                     </button>
 
