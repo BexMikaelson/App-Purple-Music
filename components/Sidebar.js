@@ -4,13 +4,22 @@ import {
     ListBulletIcon,
     PlusIcon,
     HeartIcon,
-    
 } from '@heroicons/react/24/outline'
+import {signOut} from "next-auth/react"
 
 const Sidebar = () => {
     return (
       <div className='text-gray-500 p-5 text-sm border-r border-gray-900 space-y-5'>
         <h1>Sidebar</h1>
+
+        <div>
+          <button className='flex items-center space-x-2 
+          hover:text-purple-500' onClick={()=> signOut()} >
+            <HomeIcon className="h-5 w-5" />
+            <p>Sign Out</p>
+          </button>
+        </div>
+
         <div>
           <button className='flex items-center space-x-2 
           hover:text-purple-500' >
