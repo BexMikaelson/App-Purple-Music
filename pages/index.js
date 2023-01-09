@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Sidebar from '../components/Sidebar'
+import Center from '../components/Center'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,11 +18,11 @@ export default function Home() {
       </Head>
 
       <div className="bg-black h-screen overflow-hidden">
-        <h1>Purple Music</h1>
-        <h2>Your number one Purple music stream!</h2>
-        <main>
-          <Sidebar />
-          {/* {center} */}
+        {/* <h1>Purple Music</h1>
+        <h2>Your number one Purple music stream!</h2> */}
+        <main className='flex'> 
+          <Sidebar/>
+          <Center/>
         </main>
 
         <div>{/* {Player} */}</div>
