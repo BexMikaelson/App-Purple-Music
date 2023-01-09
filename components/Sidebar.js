@@ -5,9 +5,12 @@ import {
     PlusIcon,
     HeartIcon,
 } from '@heroicons/react/24/outline'
-import {signOut} from "next-auth/react"
+import {signOut, useSession} from "next-auth/react"
 
 const Sidebar = () => {
+  const { data: session, status } = useSession();
+
+  console.log(session)
     return (
       <div className='text-gray-500 p-5 text-sm border-r border-gray-900 space-y-5'>
         <h1>Sidebar</h1>
