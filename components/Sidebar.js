@@ -7,14 +7,17 @@ import {
 } from '@heroicons/react/24/outline'
 import {signOut, useSession} from "next-auth/react"
 import { useEffect, useState } from 'react';
+import { playlistIdState } from '../atoms/playlistAtom';
 import useSpotify from '../hooks/useSpotify';
+import { useRecoilState } from 'recoil';
+
 
 
 const Sidebar = () => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState([]);
-  const [playlistId, setPlaylistId] = useState(null);
+  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
   console.log(session)
   console.log("playlist" ,playlistId)
 
