@@ -6,13 +6,28 @@ import {
     HeartIcon,
 } from '@heroicons/react/24/outline'
 import {signOut, useSession} from "next-auth/react"
+import { useEffect, useState } from 'react';
+import useSpotify from '../hooks/useSpotify';
+
 
 const Sidebar = () => {
+  const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
-   
+  const [playlists, setPlaylists] = useState([]);
+  console.log(session)
+
+  useEffect(()=> {
+    if (spotifyApi.getAccessToken()){
+      spotifyApi.getUserPlaylists().then((data)=> {
+        setPlaylists(data.body.items)
+      });
+    }
+
+  },[session, spotifyApi])
+   console.log(playlists)
     return (
       <div className='text-gray-500 p-5 text-sm border-r border-gray-900 space-y-5 overflow-y-scroll scrollbar-hide h-screen'>
-        <h1>Sidebar</h1>
+        <h1>Sidebar </h1>
 
         <div>
           <button className='flex items-center space-x-2 
@@ -71,6 +86,13 @@ const Sidebar = () => {
         <hr className='border-t-[0.1px] border-gray-700' /> 
 
         {/* playlist */}
+        {playlists.map((playlist)=> [
+          <p key={playlist.id} className='cursor-pointer hover:text-purple-500'>
+            {playlist.name}
+          </p>
+        ]
+        )}
+        {/* <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
@@ -80,8 +102,7 @@ const Sidebar = () => {
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
         <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
+        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p> */}
       </div>
     );
 }
