@@ -60,9 +60,18 @@ const Center = () => {
 
             <section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 padding-8`}>
                 <img className="h-44 w-44 shadow-3xl" src={playlist?.images?.[0]?.url} alt="" />
-                <h1>hello</h1>
+
+                <div>
+                    <p className="font-bold text-purple-500">PLAYLIST</p>
+                    <h2 className="text-2xl md:text-3xl xl:text-5xl font-bold text-purple-500"> {playlist?.name} </h2>
+                </div>
+                
 
             </section>
+
+            <div>
+                
+            </div>
         </div>
      );
 }
