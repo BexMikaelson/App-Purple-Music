@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useRecoilValue, useRecoilState} from 'recoil';
 import { playlistIdState, playlistState } from '../atoms/playlistAtom';
+import useSpotify from "../hooks/useSpotify"
+
 
 const colors = [
     "from-indigo-500",
@@ -17,15 +19,30 @@ const colors = [
 
 const Center = () => {
     const { data: session } = useSession();
+    const spotifyApi = useSpotify();
     const [color, setColor] = useState(null)
     const playlistId = useRecoilValue(playlistIdState);
     const [playlist, setPlaylist] = useRecoilState(playlistState);
+    
 
 
     useEffect(()=> {
         setColor(shuffle(colors).pop());
 
     },[playlistId])
+
+    //när componenten playlist laddar
+    useEffect(()=> {
+        spotifyApi.getPlaylist(playlistId).then((data)=> {
+            setPlaylist(data.body);
+        })
+        //om något går fel
+        .catch((error)=> console.log(error))
+
+
+    },[spotifyApi, playlistId])
+
+    console.log(playlist)
 
     return ( 
         <div className=" flex-grow">
@@ -42,6 +59,7 @@ const Center = () => {
             </header>
 
             <section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 padding-8`}>
+                <img className="h-44 w-44 shadow-3xl" src={playlist?.images?.[0]?.url} alt="" />
                 <h1>hello</h1>
 
             </section>
