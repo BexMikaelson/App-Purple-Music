@@ -31,8 +31,8 @@ const Sidebar = () => {
   },[session, spotifyApi])
    console.log(playlists)
     return (
-      <div className='text-gray-500 p-5 text-sm border-r border-gray-900 space-y-5 overflow-y-scroll scrollbar-hide h-screen'>
-        <h1>Sidebar </h1>
+      <div className='flex flex-col text-gray-500 p-5 text-xs lg:text-sm border-r border-gray-900 space-y-5 overflow-y-scroll scrollbar-hide h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex '>
+        <h1 className='font-bold text-purple-600'>Purple Music</h1>
 
         <div>
           <button className='flex items-center space-x-2 
