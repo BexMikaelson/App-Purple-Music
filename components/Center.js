@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import {ChevronDownIcon} from "@heroicons/react/24/outline"
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
@@ -6,6 +6,7 @@ import { useRecoilValue, useRecoilState} from 'recoil';
 import { playlistIdState, playlistState } from '../atoms/playlistAtom';
 import useSpotify from "../hooks/useSpotify"
 import Songs from "../components/Songs"
+
 
 
 const colors = [
@@ -49,7 +50,9 @@ const Center = () => {
         <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
         
             <header className="absolute top-5 right-8">
-                <div className="flex items-center space-x-3  opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2 bg-black">
+                <div className="flex items-center space-x-3  opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2 bg-black" onClick={()=> signOut()}> 
+                {/* fix to dropdown */}
+
                     <img className="rounded-full w-10 h-10 bg-purple-900 " src={session?.user.image} alt="" />
 
                     <div className="flex items-center space-x-2 hover:text-purple-500"> 
