@@ -7,8 +7,17 @@ const Song = ( {order, track} ) => {
     const spotifyApi = useSpotify()
     const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+
+    const playSong = () => {
+        setCurrentTrackId(track.track.id)
+        setIsPlaying(true)
+        spotifyApi.play({
+            uris:[track.track.uri],
+        })
+
+    }
     return (
-      <div className="text-gray-500 hover:bg-gray-900 rounded-lg cursor-pointer">
+      <div className="text-gray-500 hover:bg-gray-900 rounded-lg cursor-pointer" onClick={playSong}>
         <div className="flex items-center  space-x-4 py-5 px-5 ">
           <p> {order + 1} </p>
           <img
