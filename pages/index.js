@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import Sidebar from '../components/Sidebar'
 import Center from '../components/Center'
 import {getSession} from "next-auth/react"
+import MusicPlayer from '../components/MusicPlayer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,16 +19,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="bg-black h-screen overflow-hidden">
+      <div className="bg-black h-screen overflow-hidden ">
         {/* <h1>Purple Music</h1>
         <h2>Your number one Purple music stream!</h2> */}
-        <main className='flex'> 
+        
+        <main className='flex scrollbar-hide'> 
           <Sidebar/>
           <Center/>
+          
         </main>
+        
 
-        <div>{/* {Player} */}</div>
       </div>
+      <div className='relative'>
+      <div className='absolute inset-x-0 bottom-0 '> <MusicPlayer/> </div>
+      
+
+      </div>
+      
     </>
   );
 }
