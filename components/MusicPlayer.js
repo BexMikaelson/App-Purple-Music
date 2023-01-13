@@ -13,8 +13,25 @@ const MusicPlayer = () => {
     const[volume, setVolume] = useState(50)
     const songInfo = useSongInfo();
 
+    const fetchCurrentSong = () =>{
+        if(!songInfo) {
+            spotifyApi.getMyCurrentPlayingTrack().then((data) => {
+                console.log('playing: ', data.body?.item);
+                setCurrentTrackId(data.body?.item?.id);
+
+                spotifyApi.getMyCurrentPlaybackState().then((data)=> {
+                    setIsPlaying(data.body?.is_playing);
+                })
+
+            })
+        }
+    }
+
     //useEffekt to uppdate the musicplayer+ playerimg on reload if a song is alredy playing
     useEffect(()=> {
+        if (spotifyApi.getAccessToken() && !currentTrackId){
+            //fetch the song info
+        }
 
     },[currentTrackIdState, spotifyApi, session])
 
