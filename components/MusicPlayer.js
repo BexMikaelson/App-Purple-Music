@@ -2,7 +2,7 @@ import useSpotify from "../hooks/useSpotify";
 import {useSession} from "next-auth/react";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import { useRecoilState } from "recoil";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSongInfo from "../hooks/useSongInfo";
 
 const MusicPlayer = () => {
@@ -14,7 +14,9 @@ const MusicPlayer = () => {
     const songInfo = useSongInfo();
 
     //useEffekt to uppdate the musicplayer+ playerimg on reload if a song is alredy playing
-    
+    useEffect(()=> {
+
+    },[currentTrackIdState, spotifyApi, session])
 
     return ( 
         <div>
