@@ -15,6 +15,7 @@ import {
 
     
 } from '@heroicons/react/24/solid'
+import { debounce } from "lodash";
 
 const MusicPlayer = () => {
     const spotifyApi = useSpotify();
@@ -61,8 +62,11 @@ const MusicPlayer = () => {
     },[currentTrackIdState, spotifyApi, session]);
 
     useEffect(()=> {
+      if (volume > 0 && volume < 100) {
+        debouncedAdjustVolume(volume);
+      }
 
-    },[])
+    },[volume])
 
     return (
       <div className="h-24 bg-gradient-to-b from-black to-purple-900 grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
