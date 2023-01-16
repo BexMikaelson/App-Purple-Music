@@ -4,11 +4,22 @@ import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import useSongInfo from "../hooks/useSongInfo";
+import {
+    ArrowsRightLeftIcon,
+    BackwardIcon,
+    PauseIcon,
+    PlayIcon,
+    ForwardIcon,
+    SpeakerWaveIcon,
+    SpeakerXMarkIcon,
+
+    
+} from '@heroicons/react/24/solid'
 
 const MusicPlayer = () => {
     const spotifyApi = useSpotify();
     const { data: session, status } = useSession();
-    const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
+    const [currentTrackId, setCurrentIdTrack] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
     const[volume, setVolume] = useState(50)
     const songInfo = useSongInfo();
@@ -17,7 +28,7 @@ const MusicPlayer = () => {
         if(!songInfo) {
             spotifyApi.getMyCurrentPlayingTrack().then((data) => {
                 // console.log('playing: ', data.body?.item);
-                setCurrentTrackId(data.body?.item?.id);
+                setCurrentIdTrack(data.body?.item?.id);
 
                 spotifyApi.getMyCurrentPlaybackState().then((data)=> {
                     setIsPlaying(data.body?.is_playing);
@@ -25,13 +36,25 @@ const MusicPlayer = () => {
 
             })
         }
-    }
+    };
+
+    const handlePlayPause = () => {
+      spotifyApi.getMyCurrentPlaybackState().then((data)=> {
+        if (data.body?.is_playing){
+          spotifyApi.pause();
+          setIsPlaying(false)
+        } else {
+          spotifyApi.play();
+          setIsPlaying(true)
+        }
+      });
+    };
 
     //useEffekt to uppdate the musicplayer+ playerimg on reload if a song is alredy playing
     useEffect(()=> {
         if (spotifyApi.getAccessToken() && !currentTrackId){
             //fetch the song info
-            // fetchCurrentSong();
+            fetchCurrentSong();
             setVolume(50);
         }
 
@@ -43,15 +66,27 @@ const MusicPlayer = () => {
         <div className="flex items-center space-x-4">
           <img
             className="hidden md:inline h-10 w-10"
-            src={songInfo?.album.images?.[0]?.url}
+            src={songInfo?.album?.images?.[0]?.url}
             alt=""
           />
 
           <div>
-            <h3> {songInfo?.name} name</h3>
-            <p> {songInfo?.artists?.[0]?.name} artist</p>
+            <h3> {songInfo?.name}</h3>
+            <p> {songInfo?.artists?.[0]?.name}</p>
           </div>
+
+          
         </div>
+        <div className="flex items-center justify-evenly space-x-4 " > 
+              <ArrowsRightLeftIcon className="button" />
+              <BackwardIcon className="button" onClick={()=> spotifyApi.skipToPrevious()}/>
+
+              {isPlaying ? ( <PauseIcon onClick={handlePlayPause} className="button"/> ):( <PlayIcon onClick={handlePlayPause} className="button" /> )}
+
+              <ForwardIcon className="button" onClick={()=> spotifyApi.skipToNext()}/>
+          </div>
+
+          
       </div>
     );
 }
