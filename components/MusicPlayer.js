@@ -71,12 +71,12 @@ const MusicPlayer = () => {
     const debouncedAdjustVolume = useCallback(
       debounce((volume)=> {
         spotifyApi.setVolume(volume).catch((err)=>{});
-      }, 500), []
+      }, 500),[]
     )
 
     return (
       <div className="h-24 bg-gradient-to-b from-black to-purple-900 grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
-        {/* <h1>player</h1> */}
+        
         <div className="flex items-center space-x-4">
           <img
             className="hidden md:inline h-10 w-10"
@@ -101,7 +101,7 @@ const MusicPlayer = () => {
           </div>
 
           <div className="flex items-center space-x-3 md:space-x-4 justify-end pr-3">
-            <SpeakerXMarkIcon onClick={()=> volume > 0 && setVolume(volume - 100)} className="button"/>
+            <SpeakerXMarkIcon onClick={()=> volume > 0 && setVolume(volume - 10)} className="button"/>
             <input className="w-14 md:w-28" type="range" value={volume} min={0} max={100} onChange={(e)=> setVolume(Number(e.target.value))} />
             <SpeakerWaveIcon onClick={()=> volume < 100 && setVolume(volume + 10)} className="button"/>
           </div>
