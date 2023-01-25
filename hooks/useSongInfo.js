@@ -5,23 +5,26 @@ import { useEffect, useState } from "react";
 
 const useSongInfo = () => {
     const spotifyApi = useSpotify();
-    const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
-    const [songInfo, setSongInfo] = useState(null)
+    const [currentIdTrack, setCurrentIdTrack] = useRecoilState(currentTrackIdState);
+    const [songInfo, setSongInfo] = useState([])
 
     useEffect(()=> {
         //runing asynchronous code inside a useEffect
         const fetchSongInfo = async () => {
-            if (currentTrackId) {
-                const trackInfo = await fetch( `https://api.spotify.com/v1/tracks/${currentTrackId}`, {
+            if (currentIdTrack) {
+                const trackInfo = await fetch(`https://api.spotify.com/v1/tracks/${currentIdTrack}`, {
                     headers: { Authorization: `Bearer ${spotifyApi.getAccessToken()}`},
                 }
-              ).then(response => response.json());
+              ).then(res => res.json());
+
+              setSongInfo(trackInfo)
     
             }
 
         }
+        fetchSongInfo();
 
-    }, [currentTrackId, spotifyApi]);
+    }, [currentIdTrack, spotifyApi]);
 
     return songInfo;
 }
