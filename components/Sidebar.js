@@ -53,7 +53,7 @@ const Sidebar = () => {
         <div>
           <button className='flex items-center space-x-2 hover:text-purple-500'>
             <MagnifyingGlassIcon className="h-5 w-5" />
-            <p>Search</p>
+             <a href="/Search">Search</a>
           </button>
         </div>
 
@@ -97,17 +97,7 @@ const Sidebar = () => {
           </p>
         ]
         )}
-        {/* <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p>
-        <p className='cursor-pointer hover:text-purple-500'>Playlist name...</p> */}
+        
       </div>
     );
 }
