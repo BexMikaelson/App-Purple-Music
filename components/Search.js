@@ -85,7 +85,7 @@ const Search = () => {
   console.log(showSongs, "clickt me");
   return (
     <div >
-      <input type="text" placeholder="Search for Song or Artist"
+      <input className="ml-10 bg-purple-700 p-3 rounded-full " type="text" placeholder="Search Album/Artist"
         onKeyPress={event => {
           if (event.key == "Enter") {
             console.log("Enter");
@@ -93,9 +93,9 @@ const Search = () => {
         }}
         onChange={event => setSearchInput(event.target.value)}
       />
-      <button type="submit" onClick={search}> <p>Search</p></button>
+      <button className='p-5 rounded-full hover:text-purple-500' type="submit" onClick={search}> <p>Search</p></button>
 
-      <div className="p-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-3 gap-5 ">
+      <div className="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 ">
         {albums.map((album, i) => {
           return (
             <div className="cursor-pointer" key={album.id}>
@@ -103,12 +103,12 @@ const Search = () => {
 
                 <div className="rounded overflow-hidden shadow-lg ">
                   <img
-                    className="w-full"
+                    className="w-full md:w-40 md:h-40"
                     src={album?.images[0]?.url}
                     alt=""
                   />
-                  <div className="font-bold text-xl mb-2">
-                    <p> {album?.name} </p>
+                  <div className="font-bold  ">
+                    <p className="w-40 sm:w-40 mg:w-40 lg:w-60 truncate"> {album?.name} </p>
                   </div>
                 </div>
               </button>
