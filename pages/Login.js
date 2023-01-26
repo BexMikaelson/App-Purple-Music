@@ -6,7 +6,7 @@ const Login = ({ providers }) => {
   console.log(providers)
   return (
     <div>
-      <h1>Login</h1>
+      <div className="flex place-content-center text-purple-700 p-10 font-bold text-[2rem]"><h1>Purple Music</h1></div>
       <div className="flex place-content-center text-purple-700">
         <MusicalNoteIcon className="h-80 w-80" />
       </div>
