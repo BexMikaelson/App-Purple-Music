@@ -9,3 +9,8 @@ export const playingTrackState = atom({
   key: "playingTrackState",
   default: "",
 });
+
+export const toggleSearch = atom({
+  key: "toggleSearch",
+  default: false,
+});
