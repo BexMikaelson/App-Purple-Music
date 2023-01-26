@@ -1,11 +1,14 @@
 import { useSession, signOut } from "next-auth/react";
-import {ChevronDownIcon} from "@heroicons/react/24/outline"
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
-import { useRecoilValue, useRecoilState} from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { playlistIdState, playlistState } from '../atoms/playlistAtom';
+import { albumTracks } from '../atoms/songAtom';
+import { toggleSearch } from '../atoms/playerAtom';
 import useSpotify from "../hooks/useSpotify"
-import Songs from "../components/Songs"
+import { PlaylistSongs, AlbumSongs } from "../components/Songs"
+import Search from './Search';
 
 
 
@@ -25,41 +28,42 @@ const Center = () => {
     const [color, setColor] = useState(null)
     const playlistId = useRecoilValue(playlistIdState);
     const [playlist, setPlaylist] = useRecoilState(playlistState);
-    
+    const [showSearch] = useRecoilState(toggleSearch);
 
 
-    useEffect(()=> {
+    useEffect(() => {
         setColor(shuffle(colors).pop());
 
-    },[playlistId])
+    }, [playlistId])
 
     //när componenten playlist laddar
-    useEffect(()=> {
-        spotifyApi.getPlaylist(playlistId).then((data)=> {
+    useEffect(() => {
+        spotifyApi.getPlaylist(playlistId).then((data) => {
             setPlaylist(data.body);
         })
-        //om något går fel
-        .catch((error)=> console.log(error))
+            //om något går fel
+            .catch((error) => console.log(error))
 
 
-    },[spotifyApi, playlistId])
+    }, [spotifyApi, playlistId])
 
     console.log(playlist)
 
-    return ( 
+    return (
         <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
-        
+
+
             <header className="absolute top-5 right-8">
-                <div className="flex items-center space-x-3  opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2 bg-black" onClick={()=> signOut()}> 
-                {/* fix to dropdown */}
+                <div className="flex items-center space-x-3  opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2 bg-black" onClick={() => signOut()}>
+                    {/* fix to dropdown */}
 
                     <img className="rounded-full w-10 h-10 bg-purple-900 " src={session?.user.image} alt="" />
 
-                    <div className="flex items-center space-x-2 hover:text-purple-500"> 
+                    <div className="flex items-center space-x-2 hover:text-purple-500">
                         <h2> {session?.user.name} </h2>
-                        <ChevronDownIcon className="w-5 h-5"/>
+                        <ChevronDownIcon className="w-5 h-5" />
                     </div>
-                 </div>
+                </div>
             </header>
 
             <section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 p-8`}>
@@ -69,15 +73,18 @@ const Center = () => {
                     <p className="font-bold text-purple-500">PLAYLIST</p>
                     <h2 className="text-2xl md:text-3xl xl:text-5xl font-bold text-purple-500"> {playlist?.name} </h2>
                 </div>
-                
+
 
             </section>
 
+            {showSearch && (<><AlbumSongs /><Search /></>)}
             <div>
-                <Songs/>
+
+                <hr />
+                <PlaylistSongs />
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default Center;
