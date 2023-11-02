@@ -3,15 +3,15 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { playlistIdState, playlistState } from "../../atoms/playlistAtom";
-import { albumTracks } from "../../atoms/songAtom";
-import useSpotify from "../../hooks/useSpotify";
+import { playlistIdState, playlistState } from "../atoms/playlistAtom";
+import { albumTracks } from "../atoms/songAtom";
+import useSpotify from "../hooks/useSpotify";
 import { PlaylistSongs, AlbumSongs } from "./Songs";
 import Search from "./Search";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import React from "react";
-import { toggleSearch, toggleSearchAlbumSongs } from "../../atoms/playerAtom";
+import { toggleSearch, toggleSearchAlbumSongs } from "../atoms/playerAtom";
 
 const colors = [
   "from-indigo-500",

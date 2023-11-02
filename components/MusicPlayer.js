@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { currentTrackIdState, isPlayingState } from "../../atoms/songAtom";
+import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import {
   selectedUrisState,
   currentSongIndexState,
-} from "../../atoms/playerAtom";
-import useSongInfo from "../../hooks/useSongInfo";
+} from "../atoms/playerAtom";
+import useSongInfo from "../hooks/useSongInfo";
 import SpotifyPlayer from "react-spotify-web-playback";
 
 export function MusicPlayer() {

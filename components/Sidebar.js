@@ -7,11 +7,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { playlistIdState } from "../../atoms/playlistAtom";
-import { toggleSearch, toggleSearchAlbumSongs } from "../../atoms/playerAtom";
-import useSpotify from "../../hooks/useSpotify";
+import { playlistIdState } from "../atoms/playlistAtom";
+import { toggleSearch, toggleSearchAlbumSongs } from "../atoms/playerAtom";
+import useSpotify from "../hooks/useSpotify";
 import { useRecoilState } from "recoil";
-import { navigationState } from "../../atoms/navigationAtom";
+import { navigationState } from "../atoms/navigationAtom";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Center from "./Center";

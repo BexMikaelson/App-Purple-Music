@@ -1,9 +1,9 @@
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import Songs, { AlbumSongs } from "./Songs";
-import useSpotify from "../../hooks/useSpotify";
-import { albumTracks } from "../../atoms/songAtom";
-import { toggleSearch, toggleSearchAlbumSongs } from "../../atoms/playerAtom";
+import Songs from "./Songs";
+import useSpotify from "../hooks/useSpotify";
+import { albumTracks } from "../atoms/songAtom";
+import { toggleSearch, toggleSearchAlbumSongs } from "../atoms/playerAtom";
 
 const Search = () => {
   const spotifyApi = useSpotify();

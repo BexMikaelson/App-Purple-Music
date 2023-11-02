@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { playlistState } from "../../atoms/playlistAtom";
-import { albumTracks } from "../../atoms/songAtom";
+import { playlistState } from "../atoms/playlistAtom";
+import { albumTracks } from "../atoms/songAtom";
 import { useRecoilState } from 'recoil';
-import { selectedUrisState, currentSongIndexState } from '../../atoms/playerAtom';
+import { selectedUrisState, currentSongIndexState } from '../atoms/playerAtom';
 import Song from "./Song"
 
 const Songs = ({ songs = [] }) => {

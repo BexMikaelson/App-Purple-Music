@@ -1,8 +1,8 @@
 import { Inter } from "@next/font/google";
-import Sidebar from "./components/Sidebar";
-import Center from "./components/Center";
+import Sidebar from "../components/Sidebar";
+import Center from "../components/Center";
 import { getSession } from "next-auth/react";
-import MusicPlayer from "./components/MusicPlayer";
+import MusicPlayer from "../components/MusicPlayer";
 import React, { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
