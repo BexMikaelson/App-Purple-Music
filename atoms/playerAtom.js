@@ -14,3 +14,18 @@ export const toggleSearch = atom({
   key: "toggleSearch",
   default: false,
 });
+
+export const toggleSearchAlbumSongs = atom({
+  key: "toggleSearchAlbumSongs",
+  default: false,
+});
+
+export const selectedUrisState = atom({
+  key: 'selectedUrisState',
+  default: [],
+});
+
+export const currentSongIndexState = atom({
+  key: 'currentSongIndexState',
+  default: 0,
+});
