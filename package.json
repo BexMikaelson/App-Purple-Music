@@ -18,7 +18,7 @@
     "next-auth": "^4.18.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-spotify-web-playback": "^0.11.1",
+    "react-spotify-web-playback": "^0.14.1",
     "react-spotify-web-playback-sdk": "^3.0.1",
     "recoil": "^0.7.6",
     "spotify-web-api-node": "^5.0.2",
