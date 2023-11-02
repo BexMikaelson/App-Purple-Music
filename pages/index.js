@@ -1,7 +1,6 @@
 import { Inter } from "@next/font/google";
 import Sidebar from "./components/Sidebar";
 import Center from "./components/Center";
-import Nav from "./Nav/page";
 import { getSession } from "next-auth/react";
 import MusicPlayer from "./components/MusicPlayer";
 import React, { useState, useEffect } from "react";
