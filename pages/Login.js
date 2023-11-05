@@ -24,6 +24,7 @@ const Login = ({ providers }) => {
     </div>
   );
 }
+Login.layout = false;
 
 export default Login;
 

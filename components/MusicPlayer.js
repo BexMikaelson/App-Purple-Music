@@ -33,7 +33,7 @@ export function MusicPlayer() {
     <div className="h-24 bg-gradient-to-b from-black to-purple-900 grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
       <div className="fixed bottom-0 left-0 w-full z-50">
         {session && (
-          /* selectedUris.length > 0 ? */ <SpotifyPlayer
+           <SpotifyPlayer
             token={session.user.accessToken}
             uris={selectedUris}
             play={isPlaying}

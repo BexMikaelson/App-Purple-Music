@@ -1,4 +1,4 @@
-import { useSession, signOut } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
@@ -6,12 +6,11 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { playlistIdState, playlistState } from "../atoms/playlistAtom";
 import { albumTracks } from "../atoms/songAtom";
 import useSpotify from "../hooks/useSpotify";
-import { PlaylistSongs, AlbumSongs } from "./Songs";
-import Search from "./Search";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { PlaylistSongs, AlbumSongs } from "../components/Songs";
+import Search from "../components/Search";
 import { useRouter } from "next/router";
 import React from "react";
-import { toggleSearch, toggleSearchAlbumSongs } from "../atoms/playerAtom";
+import { toggleSearch } from "../atoms/playerAtom";
 
 const colors = [
   "from-indigo-500",
@@ -30,12 +29,8 @@ const Center = () => {
   const playlistId = useRecoilValue(playlistIdState);
   const [playlist, setPlaylist] = useRecoilState(playlistState);
   const [showSearch, setShowSearch] = useRecoilState(toggleSearch);
-  /* const [playlistId, setPlaylistId] = useRecoilState(playlistIdState); */
   const router = useRouter();
   const playlistIdFromUrl = router.query.playlist;
-  const [SearchAlbumSongs, setSearchAlbumSongs] = useRecoilState(
-    toggleSearchAlbumSongs
-  );
 
   useEffect(() => {
     if (playlistIdFromUrl) {
@@ -66,39 +61,9 @@ const Center = () => {
   console.log(playlist);
 
   return (
-    <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
-      <header className="absolute top-5 right-8">
-        <div
-          className="flex items-center space-x-3  opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2 bg-black"
-          onClick={() => signOut()}
-        >
-
-          <img
-            className="rounded-full w-10 h-10 bg-purple-900 "
-            src={session?.user.image}
-            alt=""
-          />
-
-          <div className="flex items-center space-x-2 hover:text-purple-500">
-            <h2> {session?.user.name} </h2>
-            <ChevronDownIcon className="w-5 h-5" />
-          </div>
-        </div>
-
-        <div className="p-5 visible md:invisible">
-          <button
-            className="flex items-center space-x-2 hover:text-purple-500 "
-            onClick={() => setShowSearch(!showSearch)}
-          >
-            <MagnifyingGlassIcon className="h-5 w-5" />
-            <p>Search</p>
-          </button>
-        </div>
-      </header>
-
+    <div>
       {showSearch && (
         <>
-          
           <Search />
           <AlbumSongs />
         </>
@@ -128,5 +93,15 @@ const Center = () => {
     </div>
   );
 };
-
 export default Center;
+
+//Server rendering, pre rendering on the server to get the accsec key before rendering.
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session,
+    },
+  };
+}

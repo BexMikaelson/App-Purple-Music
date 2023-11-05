@@ -1,8 +1,5 @@
 import { Inter } from "@next/font/google";
-import Sidebar from "../components/Sidebar";
-import Center from "../components/Center";
 import { getSession } from "next-auth/react";
-import MusicPlayer from "../components/MusicPlayer";
 import React, { useState, useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,16 +9,14 @@ export default function Home() {
     <>
       <div className="bg-black h-screen overflow-hidden ">
         <main className="flex scrollbar-hide">
-          <Sidebar />
-          <Center />
+          <h1 className="font-bold text-purple-600 pt-20 pl-5 ">
+            Welcome to Purple Music
+            <br />
+            Listen to a world of music, select Album and song to start jamming,
+            <br />
+            or search for the music you want to listen to!
+          </h1>
         </main>
-      </div>
-
-      <div className="relative">
-        <div className="absolute inset-x-0 bottom-0 ">
-          {" "}
-          <MusicPlayer />{" "}
-        </div>
       </div>
     </>
   );

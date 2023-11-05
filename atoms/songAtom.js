@@ -15,8 +15,4 @@ export const albumTracks = atom({
   default: [], // default value (aka initial value)
 });
 
-/* export const currentTrackIndexState = atom({
-  key: 'currentTrackIndexState',
-  default: 0,
-}); */
 
